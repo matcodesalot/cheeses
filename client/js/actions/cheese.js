@@ -27,20 +27,19 @@ export let fetchCheesesRequest = function() {
   
 };
 
-//fetch endpoint for API
+//fetch endpoint for API (async)
 export let fetchCheeses = function() {
     return function(dispatch) {
         let endpoint = '/cheeses';
+        dispatch(fetchCheesesRequest());
         return fetch(endpoint)
             .then(function(response){
                 if(response.status < 200 || response.status >= 300) {
                     let error = new Error(response.statusText);
                     error.response = response;
                     throw error;
+                    
                 }
-                return response;
-            })
-            .then(function(response) {
                 return response.json();
             })
             .then(function(data) {
