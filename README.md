@@ -1,4 +1,6 @@
-# Thinkful Full Stack Template
+# Cheese
+
+I like cheese.
 
 A template for developing and deploying full stack JavaScript apps.  Supports ES2015 on the client and server-side.
 
