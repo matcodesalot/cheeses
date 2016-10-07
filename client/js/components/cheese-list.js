@@ -1,6 +1,6 @@
 import React from "react";
 import {connect} from "react-redux";
-import actions from "../actions/cheese";
+import {fetchCheeses} from "../actions/cheese";
 
 let CheeseList = React.createClass({
     componentDidMount: function() {
@@ -11,7 +11,7 @@ let CheeseList = React.createClass({
         let cheeses = this.props.cheeses
         return (
             <ul>
-                <li> {cheeses.map(cheese => cheese)} </li>
+                {cheeses.map( (cheese, index) => <li key={index}>{cheese}</li>)} 
             </ul>
         );
     }
@@ -24,9 +24,9 @@ let mapStateToProps = function(state) {
 let mapDispatchToProps = function(dispatch) {
     return{
         fetchCheese: function() {
-            dispatch(actions.fetchCheeses)
+            dispatch(fetchCheeses())
         }
-    }
-}
+    };
+};
 
 export default connect(mapStateToProps, mapDispatchToProps)(CheeseList);

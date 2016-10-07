@@ -1,6 +1,9 @@
 //Reducers
 
-import actions from "../actions/cheese";
+import {
+  FETCH_CHEESES_REQUEST, FETCH_CHEESES_SUCCESS,
+  FETCH_CHEESES_ERROR
+} from '../actions/cheese'
 
 let initialState = {
     cheeses: [],
@@ -11,22 +14,22 @@ let initialState = {
 let cheeseReducer = function(state, action) {
     state = state || initialState;
     switch(action.type) {
-        case actions.FETCH_CHEESES_REQUEST:
+        case FETCH_CHEESES_REQUEST:
             return Object.assign({}, state, {
                 loading: true
             });
         
-        case actions.FETCH_CHEESES_SUCCESS:
+        case FETCH_CHEESES_SUCCESS:
             return Object.assign({}, state, {
                 loading: false,
                 error: null,
-                cheeses: actions.payload
+                cheeses: action.payload
             });
         
-        case actions.FETCH_CHEESES_ERROR:
+        case FETCH_CHEESES_ERROR:
             return Object.assign({}, state, {
                 loading: false,
-                error: actions.error
+                error: action.error
             });
         
         default:

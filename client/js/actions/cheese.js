@@ -43,6 +43,7 @@ export let fetchCheeses = function() {
                 return response.json();
             })
             .then(function(data) {
+                console.log("THIS IS DISPATCH DATA", data)
                 dispatch(fetchCheesesSuccess(data));
             })
             .catch(function(error){
