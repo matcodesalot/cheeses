@@ -1,8 +1,8 @@
+//Actions
 import fetch from 'isomorphic-fetch';
 
-let FETCH_CHEESES_SUCCESS = 'FETCH_CHEESES_SUCCESS';
-
-let fetchCheesesSuccess = function(cheese) {
+export let FETCH_CHEESES_SUCCESS = 'FETCH_CHEESES_SUCCESS';
+export let fetchCheesesSuccess = function(cheese) {
   return {
     type: FETCH_CHEESES_SUCCESS,
     payload: cheese
@@ -10,9 +10,8 @@ let fetchCheesesSuccess = function(cheese) {
   
 };
 
-let FETCH_CHEESES_ERROR = 'FETCH_CHEESES_ERROR';
-
-let fetchCheesesError = function(error) {
+export let FETCH_CHEESES_ERROR = 'FETCH_CHEESES_ERROR';
+export let fetchCheesesError = function(error) {
   return {
     type: FETCH_CHEESES_ERROR,
     error: error
@@ -20,9 +19,16 @@ let fetchCheesesError = function(error) {
   
 };
 
+export let FETCH_CHEESES_REQUEST = 'FETCH_CHEESES_REQUEST';
+export let fetchCheesesRequest = function() {
+  return {
+    type: FETCH_CHEESES_REQUEST,
+  };
+  
+};
+
 //fetch endpoint for API
-let fetchCheesesRequest = function() {
-    
+export let fetchCheeses = function() {
     return function(dispatch) {
         let endpoint = '/cheeses';
         return fetch(endpoint)
@@ -41,7 +47,7 @@ let fetchCheesesRequest = function() {
                 dispatch(fetchCheesesSuccess(data));
             })
             .catch(function(error){
-                dispatch(fetchCheesesError(error))                
-            })
-    }
-}
+                dispatch(fetchCheesesError(error));             
+            });
+    };
+};
